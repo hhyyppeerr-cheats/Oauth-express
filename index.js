@@ -4,13 +4,16 @@ const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const path = require('path');
 const app = express();
+
+// Middleware para verificar autenticación
 function ensureAuthenticated(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect('/');
 }
-// Configurar Passport
+
+// Configuracion Passport
 passport.use(new GitHubStrategy({
     clientID: process.env.GITHUB_CLIENT_ID,
     clientSecret: process.env.GITHUB_CLIENT_SECRET,
