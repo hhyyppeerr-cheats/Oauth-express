@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+</head>
+<body>
+  <h1>Oauth Express</h1>
+  <h2 id="resp"></h2>
+  <form action="/auth/github" method="get">
+    <button>Login con Github</button>
+  </form>
+  <ul>
+    <li>
+      <a href="/profile">Perfil</a>, solo disponible para usuarios autenticados
+    </li>
+    <li>
+      <a href="/secret">Secretos</a>, solo disponible para usuarios autenticados
+    </li>
+  </ul>
+
+  <script>
+    fetch('/profile')
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);
+        document.getElementById('resp').innerHTML = `Bienvenido ${data.username}`
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
