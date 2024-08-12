@@ -14,8 +14,7 @@ app.use(require('express-session')({
     maxAge: null 
   } 
 }));
-
-app.use(passport.initialize());
+//app.use(passport.initialize());
 app.use(passport.session());
 
 // Cargar las rutas
